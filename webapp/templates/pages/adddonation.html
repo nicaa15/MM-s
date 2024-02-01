@@ -1,0 +1,61 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+
+    <h2 class="page-heading">Donation</h2>
+    <div id="post-containers">
+        <section id="blogpost">
+            <div class="card">
+                <center>
+                            <h3 style="color:blueviolet">{{msg}}</h3>
+                        </center>
+                <div class="card-description">
+
+                    <h3 class="we">UnionBank of the Philippines (UBP)</h3>
+                    <p class="we"> Account Name: GMA Kapuso Foundation Inc.</p>
+                    <p class="we"> Account Number: 000-4-000-22679&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </p>
+                    <p class="we">Code: UBPHPHMM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                      <h3 class="we">GCASH </h3>
+                        <h3 class="we"><img src="{% static 'images/GCASH.jpg' %}" alt="Card Image" class="centered-image" width="300" height="300">
+</h3>
+
+                    <form id="blog-form" method="post" action="{% url 'adddonation' %}" enctype="multipart/form-data">
+     {% csrf_token %}
+                        <div class="form-group">
+                            <h3><label for="name">Donor Name:</label> </h3>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="amount">Amount:</label> </h3>
+                            <input type="text" id="amount" name="amount" required>
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="proof">Proof:</label></h3>
+                            <input type="file" id="proof" name="proof" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="message">Message:</label> </h3>
+                            <textarea id="message" name="message" rows="6" ></textarea>
+                        </div>
+
+                        <div class="cards">
+                            <button type="submit" class="btn-submit">Submit</button>
+                        </div>
+                        <div id="notification-container"></div>
+                    </form>
+                    {% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
+                </div>
+            </div>
+            <br>
+        </section>
+    </div>
+
+</main>
+
+{% endblock %}

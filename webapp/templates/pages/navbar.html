@@ -1,0 +1,54 @@
+{% load static %}
+<div id="slideout-menu">
+        <ul>
+            <li>
+                <a href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'bloglistpage' %}">Blog</a>
+            </li>
+            <li>
+                <a href="{% url 'aboutpage' %}">About</a>
+            </li>
+            <li>
+                <a href="{% url 'contactpage' %}">Contacts</a>
+            </li>
+            <li>
+                <input type="text" placeholder="Search Here">
+            </li>
+        </ul>
+    </div>
+
+    <nav>
+        <div id="logo-img">
+
+            <a href="#">
+                <img src="{% static '/images/logo.png' %}" alt="MM Nature Hub">
+
+            </a>
+            {{ request.session.Name }}
+        </div>
+        <div id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'bloglistpage' %}">Blog</a>
+            </li>
+            <li>
+                <a href="{% url 'aboutpage' %}">About</a>
+            </li>
+            <li>
+                <a href="{% url 'contactpage' %}">Contacts</a>
+            </li>
+            <li>
+                <div id="search-icon">
+                    <i><a href='{% url "logout_user" %}' class="fas fa-sign-out-alt"></a></i>
+                </div>
+
+            </li>
+        </ul>
+    </nav>

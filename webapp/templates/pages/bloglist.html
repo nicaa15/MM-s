@@ -1,0 +1,88 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+{% load static %}
+<main>
+
+  <div>
+
+    <h2 class="page-heading">Blogs</h2>
+    <div class="well">
+    <form class="example" >
+  <input type="text" placeholder="Search.." name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+</div>
+
+
+
+
+        <div class="cards">
+            <a href="{% url 'formpage' %}" class="create-blog-btn">CREATE YOUR BLOG</a>
+         </div>
+         <br>
+
+ <center>
+                            <h3 style="color:blueviolet">{{msg}}</h3>
+                        </center>
+<section>
+    {% for abc in blogs %}
+        {% if abc.name == request.session.Name %}
+            <div class="card">
+                <div class="card-image">
+
+                        <img src="{{ abc.photo.url }}" alt="Card Image" width="300" height="300">
+
+                </div>
+
+                <div class="card-description">
+                        <h3>{{ abc.blogTitle }}</h3>
+                  <h5>{{ abc.date }} / {{ abc.name }}  </h5>
+                    <h5>
+
+                      <a href="{% url 'editblogpostpage' abc.id %}"><i class="fas fa-pencil-alt"></i></a>   |
+                       <form method="post" action="{% url 'delete_bloguser' abc.id %}"  style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                </form>
+</h5>
+
+
+                     <p>{{ abc.content|truncatewords:30 }}. <a href="{% url 'blogpostpage' abc.id %}">Read more...</a></p>
+
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+
+<hr>
+<br>
+      <section>
+    {% for abc in blogs %}
+        {% if not abc.name == request.session.Name %}
+            <div class="card">
+                <div class="card-image">
+
+                        <img src="{{ abc.photo.url }}" alt="Card Image" width="300" height="300">
+
+                </div>
+
+                <div class="card-description">
+                        <h3>{{ abc.blogTitle }}</h3>
+                    <h5>{{ abc.date }} / {{ abc.name }}</h5>
+                        <p>{{ abc.content|truncatewords:30 }}. <a href="{% url 'blogpostpage' abc.id %}">Read more...</a></p>
+
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+<br><br>
+      <br><br>
+</div>
+
+  </main>
+{% endblock %}

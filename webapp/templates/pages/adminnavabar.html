@@ -1,0 +1,52 @@
+{% load static %}
+<div id="slideout-menu">
+        <ul>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+        </ul>
+    </div>
+
+    <nav>
+        <div id="logo-img">
+            <a href="#">
+                <img src="{% static '/images/logo.png' %}" alt="MM Nature Hub">
+            </a>
+            {{ request.session.Name }}
+        </div>
+        <div id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li>
+               <a ></a>
+            </li>
+            <li>
+               <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <a ></a>
+            </li>
+            <li>
+                <div id="search-icon">
+                    <i><a href='{% url "logout_user" %}' class="fas fa-sign-out-alt"></a></i>
+                </div>
+
+            </li>
+        </ul>
+    </nav>

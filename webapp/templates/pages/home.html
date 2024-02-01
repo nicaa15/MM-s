@@ -1,0 +1,130 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+{% load static %}
+    <div id="banner">
+        <h1>Welcome to MM's Nature Hub</h1>
+        <h3>🌿 Discover, Connect, and Advocate for a Greener Tomorrow 🌿</h3>
+    </div>
+
+    <main>
+          <section id="blogpost">
+        <div class="card">
+
+          <div class="card-description">
+
+            <h3 class="we" >Our Story</h3>
+            <p>At MM Nature Hub , we believe in the power of collective action to make a positive impact on the world. Our journey began with a simple idea – to create a space where passionate individuals could come together to share their advocacy for nature and environmental sustainability.</p>
+            <p>Founded by Monica Manalo, our platform emerged from a deep-seated love for the beauty of the natural world and a profound concern for its well-being. As a team of dedicated individuals, we recognize the urgency of addressing environmental challenges and the need for a united voice to drive meaningful change.</p>
+            <h3 class="we">Our Mission</h3>
+            <p>Our mission is clear: to provide a hub for advocates, enthusiasts, and change-makers who are committed to nurturing and preserving the environment. Through a shared passion for nature, we aim to foster a community that inspires, educates, and empowers individuals to take meaningful actions towards a more sustainable future.</p>
+            <h3 class="we">Join Us in Making a Difference</h3>
+            <p>MM Nature Hub is more than just a platform; it's a movement. Join us in our commitment to let nature thrive. Explore, engage, and be a part of a community that believes in the power of collective efforts to create a sustainable and harmonious world.</p>
+             <h1 class="we">🌍 🌱 🤝</h1>
+
+          </div>
+        </div>
+<aside id="sidebars">
+        <h2>"As an advocate for environmental sustainability, finding a platform like MM has been a game-changer. The support, encouragement, and shared commitment to making a difference have inspired me to amplify my efforts and connect with like-minded individuals." <p>---Community Member--- </p></h2>
+
+      </aside>
+      </section>
+
+    </div>
+
+            <h2 class="section-heading">All Blogs</h2>
+
+
+        <section>
+             {% for abc in blogs|slice:":2" %}
+            <div class="card">
+                <div class="card-image">
+                        <img src="{{ abc.photo.url }}"  alt="Card Image" width="300" height="300">
+
+                </div>
+
+                <div class="card-description">
+                        <h3>{{ abc.blogTitle }}</h3>
+
+                    <p>{{ abc.content|truncatewords:30 }}. <a href="{% url 'blogpostpage' abc.id %}">Read more...</a></p>
+
+                </div>
+            </div>
+
+         {% endfor %}
+        </section>
+        <div class="cardss">
+
+           <a href="{% url 'bloglistpage' %}">more blog...</a>
+          </div>
+
+
+        <a href="">
+            <h2 class="section-heading">All Projects </h2>
+        </a>
+
+  <section>
+  {% for pa in projects|slice:":2" %}
+   <div class="card">
+
+            <div class="card-image">
+
+                    <img src="{{ pa.photo.url }}" alt="Card Image" width="300" height="300">
+
+            </div>
+
+            <div class="card-description">
+                <a href="">
+                    <h3>{{ pa.projectTitle }}</h3>
+                </a>
+
+                <h4>{{ pa.description }}</h4>
+                <p>{{ pa.subDescription }}</p>
+            </div>
+
+    </div>
+ {% endfor %}
+
+
+        </section>
+
+
+         <br>
+        <br> <br>
+        <br> <br>
+        <hr>
+        <br> <br>
+        <br> <br>
+
+        <section>
+
+   <div class="card">
+
+            <div class="card-image">
+
+                    <img src="{% static '/images/Donate.png' %}" alt="Card Image" width="700" height="200">
+
+            </div>
+
+            <div class="card-description">
+
+
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Support the mission of MM Nature Hub by making a positive impact today. Your generous donation contributes to environmental conservation and sustainable practices, fostering a greener and healthier planet for future generations. For donation, click the button below and join us in creating a brighter, more sustainable future.</p>
+            </div>
+       <div class="cards">
+            <a href="{% url 'donationpage' %}" class="create-blog-btn">Donation</a>
+         </div>
+         <br>
+
+    </div>
+
+
+
+        </section>
+
+        <br>
+        <br>
+        <br>
+
+    </main>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'pages/adminindex.html' %}
+
+{% block content %}
+{% load static %}
+
+    <main>
+
+<section id="blogpost">
+      <div class="card">
+      </div>
+</section>
+        <br>
+<div class="cardsing">
+
+      <div class="carding">
+        <div class="box">
+            <h1 class="ha">{{ total_accounts }}</h1>
+            <hr class="line">
+            <h3 class="haha">Total Member</h3>
+        </div>
+
+
+    </div>
+      <div class="carding">
+        <div class="box">
+            <h1 class="ha">{{ donations.count }}</h1>
+            <hr class="line"> <!-- Horizontal line -->
+            <h3 class="haha">Total of People Donate </h3>
+        </div>
+    </div>
+    <div class="carding">
+        <div class="box">
+            <h1 class="ha">{{ blogs.count }}</h1>
+            <hr class="line"> <!-- Horizontal line -->
+            <h3 class="haha">Total Blogs</h3>
+        </div>
+    </div>
+</div>
+
+        <h2 class="page-heading">Blogs</h2>
+
+        <div id="post-containers">
+
+            <section id="blogpost">
+
+                <div class="card">
+                    <table id="customers">
+                      <tr>
+                        <th>Name</th>
+                        <th>Blog Title</th>
+                        <th>Date</th>
+                        <th>Image URL</th>
+                        <th>Blog Content</th>
+                        <th>Action</th>
+
+                      </tr>
+
+                        {% for abc in latest_blogs %}
+                            <tr>
+                                <td>{{ abc.name }}</td>
+                                <td>{{ abc.blogTitle }}</td>
+                                <td>{{ abc.date|date:"Y-m-d" }}</td>
+
+                                <td><img src="{{ abc.photo.url }}" alt="Blog Photo" style="max-width: 100px; max-height: 100px;"></td>
+                                <td>{{ abc.content }}</td>
+                                <td>
+                                   <form method="post" action="{% url 'delete_blogs' abc.id %}" style="display: inline;">
+                    {% csrf_token %}
+                   <div class="center-container" style="text-align: center;">
+    <button type="submit" class="delete-btn" ><i class="fas fa-trash-alt"></i></button>
+</div>  </form>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+
+
+                    </table>
+ <div class="cardss">
+
+           <a href="{% url 'adminbloglistpage' %}">view more blog</a>
+          </div>
+                </div>
+                <br>
+            </section>
+        </div>
+
+
+        <h2 class="page-heading">Projects</h2>
+
+        <div id="post-containers">
+
+            <section id="blogpost">
+
+                <div class="card">
+                  <a href="{% url 'addprojectpage' %}" class="create-blog-btn"><i class="fas fa-plus"></i> ADD</a>
+            <br>
+                    <table id="customers">
+                    <tr>
+                        <th>Project Title</th>
+
+                        <th>Date</th>
+                        <th>Image URL</th>
+                        <th>Description</th>
+                        <th>Sub Description</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for pa in projects %}
+                        <tr>
+                            <td>{{ pa.projecTitle }}</td>
+                             <td>{{ pa.date|date:"Y-m-d" }}</td>
+                            <td><img src="{{ pa.photo.url }}" alt="Project Photo" style="max-width: 100px; max-height: 100px;"></td>
+
+
+                            <td>{{ pa.description }}</td>
+                            <td>{{ pa.subDescription }}</td>
+                           <td>
+                                <div class="button-container" style="display: flex; justify-content: center; align-items: center;">
+                                    <a href="{% url 'editprojectpage' pa.id %}"><i class="fas fa-pencil-alt"></i></a>
+                                    <form method="post" action="{% url 'delete_project' pa.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+
+                                </div>
+                            </td>
+
+                            </tr>
+                    {% endfor %}
+                </table>
+
+                </div>
+                <br>
+            </section>
+        </div>
+
+
+        <h2 class="page-heading">Messages</h2>
+
+        <div id="post-containers">
+
+            <section id="blogpost">
+
+                <div class="card">
+
+            <br>
+                    <table id="customers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                      </tr>
+
+                  {% for ma in messages %}
+                    <tr>
+                        <td>{{ ma.name }}</td>
+                        <td>{{ ma.email }}</td>
+                        <td>{{ ma.message }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+
+                </div>
+                <br>
+            </section>
+        </div>
+
+        <h2 class="page-heading">Donations</h2>
+
+        <div id="post-containers">
+
+            <section id="blogpost">
+
+                <div class="card">
+
+            <br>
+                    <table id="customers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                      </tr>
+
+                  {% for do in donations %}
+                    <tr>
+                        <td>{{ do.donor_name }}</td>
+                        <td>{{ do.amount }}</td>
+                        <td>{{ do.proof }}</td>
+                        <td>{{ do.message }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+
+                </div>
+                <br>
+            </section>
+        </div>
+
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </main>
+
+
+
+{% endblock %}

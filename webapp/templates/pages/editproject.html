@@ -1,0 +1,79 @@
+{% extends 'pages/adminindex.html' %}
+
+{% block content %}
+
+<main>
+
+    <h2 class="page-heading">Edit Project</h2>
+    <div id="post-containers">
+        <section id="blogpost">
+            <div class="card">
+                <div class="card-description">
+                    <form id="blog-form" method="post"  action="{% url 'editprojectpost' mem.id %}" enctype="multipart/form-data">
+     {% csrf_token %}
+
+                        <div class="form-group">
+                            <h3><label for="title">Project Title:</label> </h3>
+                            <input type="text" id="title" name="projecTitle" value="{{ mem.projecTitle }}">
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="date">Date:</label> </h3>
+                            <input type="text" id="date" name="date" value="{{ mem.date }}"readonly >
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="uploadImage">Upload Image:</label></h3>
+                                    <input type="file" id="uploadImage" name="photo" accept="image/*" >
+                        </div>
+
+
+                        <div class="form-group">
+                            <h3><label for="description">Description:</label> </h3>
+                            <textarea id="description" name="description" rows="4" cols="50">{{ mem.description }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><label for="subdescription">Sub Description:</label> </h3>
+                            <textarea id="subdescription" name="subDescription" rows="4" cols="50">{{ mem.subDescription }}</textarea>
+                        </div>
+
+
+
+
+
+                        <div class="cards">
+                            <button type="submit" class="btn-submit">Submit</button>
+                        </div>
+                        <div id="notification-container"></div>
+                    </form>
+                    {% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
+                </div>
+            </div>
+            <br>
+        </section>
+    </div>
+
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var memDate = '{{ mem.date|date:"Y-m-d" }}';  // Assuming mem.date is in 'Jan. 3, 2024' format
+    var dateObject = new Date(memDate);
+
+    // Convert to ISO string with UTC timezone
+    var formattedDate = dateObject.toISOString().split('T')[0];
+
+    document.getElementById('date').value = formattedDate;
+    document.getElementById('date').setAttribute('max', formattedDate);
+    document.getElementById('date').setAttribute('readonly', 'true');
+});
+
+
+
+    </script>
+
+
+
+{% endblock %}

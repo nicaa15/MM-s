@@ -1,0 +1,56 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+
+<main>
+
+    <h2 class="page-heading">Update Blog</h2>
+    <div id="post-containers">
+        <section id="blogpost">
+            <div class="card">
+                <div class="card-description">
+                    <form id="blog-form" method="post" action="{% url 'editblogpost' mem.id %}" enctype="multipart/form-data">
+     {% csrf_token %}
+<input type="text" id="name" name="name" value="{{ request.session.Name }}" hidden="">
+
+  <h3><label for="title">Blog Title:</label></h3>
+  <input type="text" id="title" name="title" value="{{ mem.blogTitle }}">
+
+  <h3><label for="date">Date:</label></h3>
+  <input type="text" id="date" name="date" value="{{ mem.date }}"readonly >
+
+    <h3><label for="uploadImage">Image URL:</label></h3>
+<input type="file" id="uploadImage" name="photo" accept="image/*" >
+
+
+  <h3><label for="content">Blog Content:</label></h3>
+  <textarea id="content" name="content" rows="6">{{ mem.content }}</textarea>
+
+  <div class="cards">
+    <button type="submit" id="submit" name="submit" class="btn-submit">Submit</button>
+  </div>
+</form>
+
+
+                    {% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
+                </div>
+            </div>
+            <br>
+        </section>
+    </div>
+
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+            document.getElementById('date').setAttribute('max', today);
+            document.getElementById('date').setAttribute('readonly', 'true');
+        });
+    </script>
+
+{% endblock %}

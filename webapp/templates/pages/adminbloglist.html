@@ -1,0 +1,55 @@
+{% extends 'pages/adminindex.html' %}
+
+{% block content %}
+{% load static %}
+<main>
+
+  <div>
+
+    <h2 class="page-heading">Blogs</h2>
+    <div class="well">
+    <form class="example" >
+  <input type="text" placeholder="Search.." name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+</div>
+
+
+
+<section>
+    {% for abc in blogs %}
+        <div class="card">
+            <div class="card-image">
+
+                    <img src="{{ abc.photo.url }}" alt="Card Image" width="300" height="300">
+
+            </div>
+
+            <div class="card-description">
+
+                    <h3>{{ abc.blogTitle }}</h3>
+
+                <h5>{{ abc.date }} / {{ abc.name }} <form method="post" action="{% url 'delete_blog' abc.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                </form></h5>
+                 <p>{{ abc.content|truncatewords:30 }}. <a href="{% url 'adminblogpostpage' abc.id %}">Read more...</a></p>
+
+
+           </div>
+        </div>
+    {% endfor %}
+</section>
+
+
+
+
+</div>
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  </main>
+{% endblock %}

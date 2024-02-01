@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="images/x-icon" href="{% static '/images/logo.png' %}">
+    <!-- Add this in your base template or where you include scripts -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>MM NATURE's HUB</title>
+    <style>
+        #banner {
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background: rgba(0, 0, 0, 0.4) url("{% static '/images/3.jpg' %}");
+          background-size: cover;
+          background-attachment: fixed;
+          background-position: center;
+          background-blend-mode: overlay;
+          color: white;
+        }
+
+        .address {
+    text-align: center;
+}
+
+.address-title {
+    text-align: center;
+    /* Add any additional styles for the title */
+}
+
+.address-details {
+    text-align: center;
+    /* Add any additional styles for the details */
+    /* For example, you can add margin or padding to the details */
+    margin: 10px 0;
+}
+
+/* Style for Font Awesome icons */
+.fa {
+    margin-right: 5px; /* Adjust the spacing between the icon and text */
+}
+/* Add this in your CSS file or within a <style> tag in your HTML */
+.social-icons {
+    text-align: center;
+    margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px; /* Adjust the horizontal spacing between icons */
+    font-size: 24px; /* Adjust the font size of icons */
+    color: #333; /* Adjust the color of icons */
+}
+
+/* Style for each social media icon */
+.facebook {
+    color: #3b5998; /* Facebook blue color */
+}
+
+.instagram {
+    color: #e4405f; /* Instagram pink color */
+}
+
+.twitter {
+    color: #1da1f2; /* Twitter blue color */
+}
+
+    </style>
+</head>
+
+<body>
+     {% include 'pages/navbar.html' %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% include 'pages/footer.html' %}
+
+
+</body>
+<script>
+  function submitBlog(event) {
+    event.preventDefault();  // Prevent the default form submission behavior
+
+    // Use AJAX to submit the form data to the server
+    $.ajax({
+      type: 'POST',
+      url: '/your-submit-url/',  // Replace with the actual URL to handle form submission
+      data: new FormData($('#blog-form')[0]),
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        // Handle success response
+        console.log('Form submitted successfully');
+      },
+      error: function(error) {
+        // Handle error response
+        console.error('Error submitting form:', error);
+      }
+    });
+  }
+</script>
+
+</html>

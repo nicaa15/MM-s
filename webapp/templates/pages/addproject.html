@@ -1,0 +1,59 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+
+<main>
+
+    <h2 class="page-heading">Add Project</h2>
+    <div id="post-containers">
+        <section id="blogpost">
+            <div class="card">
+                <div class="card-description">
+                    <form id="blog-form" method="post" action="{% url 'addprojectpagesssss' %}" enctype="multipart/form-data">
+     {% csrf_token %}
+
+                        <div class="form-group">
+                            <h3><label for="title">Project Title:</label> </h3>
+                            <input type="text" id="title" name="projecTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <h3><label for="date">Date:</label> </h3>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><label for="uploadImage">Upload Image:</label></h3>
+                            <input type="file" id="uploadImage" name="photo" accept="image/*" required>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><label for="description">Description:</label> </h3>
+                            <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><label for="subdescription">Sub Description:</label> </h3>
+                            <input type="text" id="subdescription" name="subDescription" required>
+                        </div>
+
+
+
+                        <div class="cards">
+                            <button type="submit" class="btn-submit">Submit</button>
+                        </div>
+                        <div id="notification-container"></div>
+                    </form>
+                    {% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
+                </div>
+            </div>
+            <br>
+        </section>
+    </div>
+
+</main>
+
+{% endblock %}

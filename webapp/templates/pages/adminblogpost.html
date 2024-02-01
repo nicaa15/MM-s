@@ -1,0 +1,43 @@
+{% extends 'pages/adminindex.html' %}
+
+{% block content %}
+{% load static %}
+<main>
+    <div></div>
+    <br>
+     <br>
+     <br>
+     <br> <br> <br>
+
+    <div id="post-containers">
+        <section id="blogpost">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ mem.photo.url }}" alt="Card Image">
+                </div>
+                <div class="card-description">
+
+{% csrf_token %}
+
+                        <h3>{{ mem.blogTitle }}</h3>
+                    </a>
+                    <div class="card-meta">
+                        Posted by {{ mem.name }} on {{ mem.date }}
+                    </div>
+                    <p>
+                        {{ mem.content }}
+                    </p>
+
+                </div>
+                <br>
+            </div>
+        </section>
+    </div>
+
+    <br>
+     <br>
+     <br><br>
+     <br>
+     <br>
+</main>
+{% endblock %}
